@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Jumpscare from './components/Jumpscare';
+import SpiderWalking from './components/SpiderWalking';
 
 function App() {
   const [currentTime, setCurrentTime] = useState('00:00:00');
   const [currentDate, setCurrentDate] = useState('');
   const [location, setLocation] = useState({ lat: 0, lon: 0, timezone: '' });
   const [showJumpscare, setShowJumpscare] = useState(false);
+  const [showSpider, setShowSpider] = useState(false);
 
   useEffect(() => {
     // Atualizar relógio a cada segundo
@@ -101,7 +103,13 @@ function App() {
           <p className="text-gray-400">Capturando cada segundo</p>
         </div>
 
-        <div className="bg-gray-800 shadow-xl border-2 border-red-700 rounded-lg p-6 text-center hover:border-red-500 transition-all">
+        <div 
+          className="bg-gray-800 shadow-xl border-2 border-red-700 rounded-lg p-6 text-center hover:border-red-500 transition-all cursor-pointer"
+          onClick={() => setShowSpider(true)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && setShowSpider(true)}
+        >
           <div className="text-4xl mb-2">⚡</div>
           <h2 className="text-xl font-bold text-red-500 mb-2">Sentido Aranha</h2>
           <p className="text-gray-400">Sempre no horário certo</p>
@@ -134,6 +142,13 @@ function App() {
         <Jumpscare
           duration={1800}
           onClose={() => setShowJumpscare(false)}
+        />
+      )}
+
+      {showSpider && (
+        <SpiderWalking
+          duration={5000}
+          onFinish={() => setShowSpider(false)}
         />
       )}
     </div>
