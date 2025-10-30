@@ -1,0 +1,50 @@
+.jumpscare-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.8);
+  z-index: 60;
+  animation: overlayFade 0.15s ease-out;
+}
+
+.jumpscare-content {
+  transform: scale(1);
+  animation: pulseScale 0.18s ease-out 0s 3;
+}
+
+.jumpscare-spidey {
+  width: 320px;
+  height: 320px;
+  filter: drop-shadow(0 8px 30px rgba(0,0,0,0.7));
+  animation: spideyFlash 0.12s linear 0s 6;
+}
+
+.j-eye {
+  transform-origin: center;
+  animation: eyeBlink 0.12s linear 0s 6;
+}
+
+@keyframes overlayFade {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes pulseScale {
+  0% { transform: scale(0.6) }
+  50% { transform: scale(1.06) }
+  100% { transform: scale(1) }
+}
+
+@keyframes spideyFlash {
+  0% { filter: brightness(0.6) saturate(0.8) }
+  50% { filter: brightness(2.4) saturate(1.2) }
+  100% { filter: brightness(0.6) saturate(0.8) }
+}
+
+@keyframes eyeBlink {
+  0% { transform: scaleY(1) }
+  50% { transform: scaleY(0.08) }
+  100% { transform: scaleY(1) }
+}

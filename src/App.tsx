@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import Jumpscare from './components/Jumpscare';
 
 function App() {
   const [currentTime, setCurrentTime] = useState('00:00:00');
   const [currentDate, setCurrentDate] = useState('');
   const [location, setLocation] = useState({ lat: 0, lon: 0, timezone: '' });
+  const [showJumpscare, setShowJumpscare] = useState(false);
 
   useEffect(() => {
     // Atualizar relógio a cada segundo
@@ -117,7 +119,23 @@ function App() {
         <p className="text-sm">
           Desenvolvido com <span className="text-red-600 animate-pulse">❤️</span> e poderes aracnídeos
         </p>
+        {/* Botão de Jumpscare */}
+        <div className="mt-6">
+          <button
+            className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg shadow-lg"
+            onClick={() => setShowJumpscare(true)}
+          >
+            Apertar para Jumpscare
+          </button>
+        </div>
       </footer>
+
+      {showJumpscare && (
+        <Jumpscare
+          duration={1800}
+          onClose={() => setShowJumpscare(false)}
+        />
+      )}
     </div>
   );
 }
